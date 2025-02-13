@@ -6,6 +6,12 @@
   font-family: Arial, sans-serif;
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
 body {
   background-image: url('background.jpg'); /* Ganti dengan nama file gambarmu */
   background-size: cover; /* Menyesuaikan gambar agar pas di layar */
@@ -13,6 +19,7 @@ body {
   background-repeat: no-repeat; /* Jangan ulangi gambar */
   height: 100vh; /* Pastikan tinggi body sesuai layar */
   margin: 0;
+  flex: 1;
 }
 
 /* Header */
@@ -29,6 +36,114 @@ header {
   border-radius: 50%;
 }
 
+/* Animasi Slide-in dari kanan */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animasi Slide-in dari kiri */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Animasi Fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Animasi Zoom-in */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animasi Slide-in dari bawah */
+@keyframes slideInBottom {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Terapkan animasi ke masing-masing elemen */
+
+/* Header (Zoom-in) */
+header {
+  opacity: 0;
+  animation: zoomIn 1s ease-in-out forwards;
+}
+
+/* Logo (Fade-in) */
+.logo {
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+/* Judul (Slide-in dari kiri) */
+.font-judul {
+  opacity: 0;
+  animation: slideInLeft 1s ease-in-out forwards;
+}
+
+/* Daftar Informasi (Slide-in dari kanan) */
+.info-card {
+  opacity: 0;
+  animation: slideInRight 0.8s ease-in-out forwards;
+}
+
+/* Efek delay pada setiap info-card */
+.info-card:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.info-card:nth-child(2) {
+  animation-delay: 0.4s;
+}
+.info-card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.info-card:nth-child(4) {
+  animation-delay: 0.8s;
+}
+.info-card:nth-child(5) {
+  animation-delay: 1s;
+}
+
+/* Footer (Slide-in dari bawah) */
+footer {
+  opacity: 0;
+  animation: slideInBottom 1s ease-in-out forwards;
+  animation-delay: 1.2s;
+}
+
 /* Daftar Informasi */
 .info-list {
   display: flex;
@@ -37,6 +152,7 @@ header {
   align-items: center;
 }
 
+/* Font untuk judul dan teks */
 .font {
   font-family: "Poppins", sans-serif;
 }
@@ -59,17 +175,19 @@ header {
   padding: 15px;
   border-radius: 10px;
   transition: transform 0.2s;
+  width: 340px; /* Menyamakan lebar */
+  min-height: 80px; /* Menyamakan tinggi minimum */
+  justify-content: center; /* Pusatkan isi */
+  text-align: center;
 }
 
-.info-card:hover {
-  transform: scale(1.05);
-}
-
-/* Mengatur teks dalam <p> agar tetap rapi */
+/* Memastikan semua kartu memiliki tinggi yang sama */
 .info-card p {
-  margin: 0;
+  flex: 1; /* Biarkan teks memenuhi ruang yang tersedia */
+  text-align: center; /* Pusatkan teks */
   font-size: 16px;
   font-weight: bold;
+  margin: 0;
 }
 
 /* Mengatur tampilan gambar */
@@ -77,6 +195,7 @@ header {
   width: 50px;
   height: 50px;
   margin-right: 15px;
+  flex-shrink: 0; /* Mencegah gambar mengecil */
 }
 
 .info-card:hover {
@@ -104,6 +223,20 @@ header {
   text-align: center;
   width: 80%;
   max-width: 300px;
+}
+
+/*  */
+footer {
+  background-color: transparent;
+  color: cyan;
+    -webkit-text-stroke: 0.1px black; /* Stroke hitam untuk ketegasan */
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7); /* Bayangan hitam agar lebih kontras */
+  text-align: center;
+  padding: 5px 0;
+  font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  margin-top: auto; /* Agar footer selalu terdorong ke bawah */
+  width: 100%;
 }
 
 .close {
